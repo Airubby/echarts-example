@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/basic.css">
+</head>
+<body>
+    <div class="bigshow">
+        <div class="bigshow_title">Echarts可视化效果图</div>
+        <div class="bigshow_con swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="bigshow_half box_pdrb">
+                        <div class="bigshow_box_char">
+                            <em></em><em></em><em></em><em></em>
+                            <div id="test1"></div>
+                        </div>
+                    </div>
+                    <div class="bigshow_half box_pdrb">
+                        <div class="bigshow_box_char">
+                            <em></em><em></em><em></em><em></em>
+                            <div id="polarChar1"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="bigshow_half box_pdrb">
+                        <div class="bigshow_box_char">
+                            <em></em><em></em><em></em><em></em>
+                            <div id="lineZoom"></div>
+                        </div>
+                    </div>
+                    <div class="bigshow_half box_pdrb">
+                        <div class="bigshow_box_char">
+                            <em></em><em></em><em></em><em></em>
+                            <div id="twoValue"></div>
+                        </div>
+                    </div>
+                    <div class="bigshow_half box_pdrb">
+                        <div class="bigshow_box_char">
+                            <em></em><em></em><em></em><em></em>
+                            <div id="gaugeChar1"></div>
+                        </div>
+                    </div>
+                    <div class="bigshow_half box_pdrb">
+                        <div class="bigshow_box_char">
+                            <em></em><em></em><em></em><em></em>
+                            <div id="gaugeChar2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="bigshow_half box_pdrb">
+                        <div class="bigshow_box_char">
+                            <em></em><em></em><em></em><em></em>
+                            <div id="polarChar"></div>
+                        </div>
+                    </div>
+                    <div class="bigshow_half box_pdlb">
+                        <div class="bigshow_box_char">
+                            <em></em><em></em><em></em><em></em>
+                            <div id="pieChar"></div>
+                        </div>
+                    </div>
+                    <div class="bigshow_all box_pdt">
+                        <div class="bigshow_box_char">
+                            <em></em><em></em><em></em><em></em>
+                            <div id="areaChar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                        <div class="bigshow_pic">
+                            <div class="bigshow_pic_left" id="gaugeChar"></div>
+                            <div class="bigshow_pic_right">
+                                <div class="bigshow_pic_top">
+                                    <div class="bigshow_pic_box">
+                                        <div class="bigshow_pic_box_img" id="pic_img1"></div>
+                                        <div class="bigshow_pic_box_text">IT设备</div>
+                                    </div>
+                                    <div class="bigshow_pic_box">
+                                        <div class="bigshow_pic_box_img" id="pic_img2"></div>
+                                        <div class="bigshow_pic_box_text">制冷设备</div>
+                                    </div>
+                                </div>
+                                <div class="bigshow_pic_bottom">
+                                    <div class="bigshow_pic_box">
+                                        <div class="bigshow_pic_box_img">
+                                            <img src="images/dcie.svg" alt="">
+                                        </div>
+                                        <div class="bigshow_pic_box_text">
+                                            <span>80.5</span>
+                                            <p>DCIE(%)</p>
+                                        </div>
+                                    </div>
+                                    <div class="bigshow_pic_box">
+                                        <div class="bigshow_pic_box_img">
+                                            <img src="images/ydl.svg" alt="">
+                                        </div>
+                                        <div class="bigshow_pic_box_text">
+                                            <span>16350</span>
+                                            <p>用电量(KWh)</p>
+                                        </div>
+                                    </div>
+                                    <div class="bigshow_pic_box">
+                                        <div class="bigshow_pic_box_img">
+                                            <img src="images/fzl.svg" alt="">
+                                        </div>
+                                        <div class="bigshow_pic_box_text">
+                                            <span>2500</span>
+                                            <p>负载率(%)</p>
+                                        </div>
+                                    </div>
+                                    <div class="bigshow_pic_box">
+                                        <div class="bigshow_pic_box_img">
+                                            <img src="images/ptl.svg" alt="">
+                                        </div>
+                                        <div class="bigshow_pic_box_text">
+                                            <span>3600</span>
+                                            <p>排碳量(Kg)</p>
+                                        </div>
+                                    </div>
+                                    <div class="bigshow_pic_box">
+                                        <div class="bigshow_pic_box_img">
+                                            <img src="images/ydcb.svg" alt="">
+                                        </div>
+                                        <div class="bigshow_pic_box_text">
+                                            <span>2500</span>
+                                            <p>用电成本(￥)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bigshow_full" id="mapChar"></div>
+                        <div class="bigshow_text">
+                            <div class="bigshow_text_title">
+                                <div class="bigshow_text_left">
+                                    <span>机房</span>
+                                </div>
+                                <div class="bigshow_text_right">
+                                    <span>PUE值</span>
+                                </div>
+                            </div>
+                            <div class="bigshow_text_con">
+                                <ul>
+                                    <li>
+                                        <div class="bigshow_text_left">
+                                            <span><em>1</em>深圳六角六楼机房</span>
+                                        </div>
+                                        <div class="bigshow_text_right">
+                                            <span>2.8</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="bigshow_text_left">
+                                            <span><em>2</em>深圳五角五楼机房</span>
+                                        </div>
+                                        <div class="bigshow_text_right">
+                                            <span>2.7</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="bigshow_text_left">
+                                            <span><em>3</em>深圳三角机房</span>
+                                        </div>
+                                        <div class="bigshow_text_right">
+                                            <span>2.7</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="bigshow_text_left">
+                                            <span><em>4</em>成都四角机房</span>
+                                        </div>
+                                        <div class="bigshow_text_right">
+                                            <span>2.3</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="bigshow_text_left">
+                                            <span><em>5</em>成都七角六楼机房</span>
+                                        </div>
+                                        <div class="bigshow_text_right">
+                                            <span>2.3</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="bigshow_text_left">
+                                            <span><em>6</em>成都一号机房</span>
+                                        </div>
+                                        <div class="bigshow_text_right">
+                                            <span>2.1</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+                <div class="swiper-slide more_char">
+                    <div class="bigshow_half box_pdrb">
+                        <div class="bigshow_box_char">
+                            <em></em><em></em><em></em><em></em>
+                            <div id="piemoreChar"></div>
+                        </div>
+                    </div>
+                    <div class="bigshow_half box_pdlb">
+                        <div class="bigshow_box_char">
+                            <em></em><em></em><em></em><em></em>
+                            <div id="hbarChar"></div>
+                        </div>
+                    </div>
+                    <div class="bigshow_half box_pdrt">
+                        <div class="bigshow_box_char">
+                            <em></em><em></em><em></em><em></em>
+                            <div id="barCharWD"></div>
+                        </div>
+                    </div>
+                    <div class="bigshow_half box_pdlt">
+                        <div class="bigshow_box_char">
+                            <em></em><em></em><em></em><em></em>
+                            <div id="barCharSD"></div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!--<div class="swiper-pagination"></div>-->
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/echarts-liquidfill.min.js"></script>
+    <script src="js/china.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/echarts.public.fn.js"></script>
+    <script src="js/basic.js"></script>
+    <script>
+        lineZoom("lineZoom")
+        var two=twoValue("twoValue")
+        gaugeChar1("gaugeChar1")
+        gaugeChar2("gaugeChar2")
+        polarChar1("polarChar1")
+        
+        console.log(two)
+
+        test("test1")
+        function test(ID) {
+            var myChart = echarts.init(document.getElementById(ID));
+            var option = {
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b}: {c} ({d}%)"
+                },
+                legend: {
+                    orient: 'vertical',
+                    x: 'left',
+                    data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+                },
+                series: [
+                    {
+                        name:'访问来源',
+                        type:'pie',
+                        radius: ['50%', '70%'],
+                        avoidLabelOverlap: false,
+                        label: {
+                            normal: {
+                                show: false,
+                                position: 'center'
+                            },
+                            emphasis: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: '30',
+                                    fontWeight: 'bold'
+                                }
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                show: false
+                            }
+                        },
+                        data:[
+                            {value:335, name:'直接访问'},
+                            {value:310, name:'邮件营销'},
+                            {value:234, name:'联盟广告'},
+                            {value:135, name:'视频广告'},
+                            {value:1548, name:'搜索引擎'}
+                        ]
+                    }
+                ]
+            };
+
+            myChart.setOption(option, true);
+            myChart.on('click', function (param) {
+                console.log(param)
+                    var index = param.dataIndex;
+            }); 
+            return myChart; 
+        }
+
+
+    </script>
+</body>
+</html>
