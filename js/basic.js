@@ -39,6 +39,12 @@ var piemore = piemoreChar("piemoreChar");
 var hChar=hbarChar("hbarChar");
 var charWD=barCharWD("barCharWD");
 var charSD=barCharSD("barCharSD");
+var lineZoom=lineZoom("lineZoom")
+var twoValue=twoValue("twoValue")
+var gaugeChar1=gaugeChar1("gaugeChar1")
+var gaugeChar2=gaugeChar2("gaugeChar2")
+var polarChar1=polarChar1("polarChar1")
+var annulus=annulus("annulus")
 console.log(piemore)
 $(window).resize(function () {
     emSize()
@@ -53,6 +59,12 @@ $(window).resize(function () {
     hChar.resize();
     charWD.resize();
     charSD.resize();
+    lineZoom.resize();
+    twoValue.resize();
+    gaugeChar1.resize();
+    gaugeChar2.resize();
+    polarChar1.resize();
+    annulus.resize();
 });
 
 
