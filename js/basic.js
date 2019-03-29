@@ -20,7 +20,8 @@ function emSize() {
     });
 }
 emSize()
-
+var morepie=morepieChar("morepie");
+var twopie=twopieChar("twopie");
 var polar = polarChar("polarChar");
 var pie = pieChar("pieChar");
 var area = areaChar("areaChar");
@@ -48,6 +49,8 @@ var annulus=annulus("annulus")
 console.log(piemore)
 $(window).resize(function () {
     emSize()
+    morepie.resize();
+    twopie.resize();
     polar.resize();
     pie.resize();
     area.resize();

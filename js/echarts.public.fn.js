@@ -74,6 +74,641 @@ wsConnection("1236","",function(result){
         $(".mapChar_list").show();
     }
 });
+//两个pie
+function twopieChar(ID){
+    var myChart = echarts.init(document.getElementById(ID));
+    var option = {
+        color:["#0077E9","#7B2DD8","#2BBBCE","#108912"],
+        tooltip: {
+            trigger: 'item',
+            formatter: "{b}: {c} ({d}%)"
+        },
+        series: [
+            {
+                type:'pie',
+                radius: ['88%', '93%'],
+                silent:true,  //不触发鼠标事件，及鼠标放上去无效果
+                // tooltip:{textStyle:{color:"transparent"},backgroundColor:"transparent"},
+                data:[
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'four'},
+                    {value:1, name:'five'},
+                    {value:1, name:'six'}
+                ],
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                },
+                itemStyle:{
+                    normal:{
+                        color: function(params){
+                            var index_color = params.name;
+                            if(index_color=="one"||index_color=='three'||index_color=='five'){
+                                return '#1E4F79';
+                            }else if(index_color=='two'||index_color=='four'||index_color=='six') {
+                                return '#0D2941';
+                            }
+                        } 
+                    }
+                }
+            },
+            {
+                type:'pie',
+                radius: ['50%', '65%'],
+                label: {
+                    normal: {
+                        formatter: ' {b|{b} }{per|{d}%} ',
+                        rich: {
+                            b: {
+                                fontSize: 12,
+                                lineHeight: 33
+                            },
+                            per: {
+                                color: '#fff',
+                                fontSize: 18,
+                                padding: [2, 4],
+                                borderRadius: 2
+                            }
+                        }
+                    }
+                },
+                data:[
+                    {value:335, name:'配电'},
+                    {value:310, name:'环境'},
+                    {value:234, name:'IT'},
+                    {value:135, name:'空调'}
+                ]
+            }
+        ]
+    };
+    myChart.setOption(option, true);
+    return myChart; 
+}
+
+//很多pie
+function morepieChar(ID){
+    var myChart = echarts.init(document.getElementById(ID));
+    var option={
+        tooltip: {
+            trigger: 'item',
+            formatter: "{b}: {c} ({d}%)"
+        },
+        series: [
+            {
+                type:'pie',
+                radius: ['68%', '80%'],
+                silent:true,  //不触发鼠标事件，及鼠标放上去无效果
+                clockwise:false,  //false 逆时针方向
+                data:[
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'three'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    
+                ],
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'center',
+                        formatter:'{num|235}\r\n{text|连续使用天数}',
+                        rich: {
+                            num: {
+                                fontSize: 26,
+                                color:'#fff'
+                            },
+                            text: {
+                                color: '#5B6A93',
+                                fontSize: 12,
+                            }
+                        },
+                        textStyle: {
+                            fontSize: '30',
+                            fontWeight: 'bold',
+                            color:"#000"
+                        },
+                    },
+                },
+                itemStyle:{
+                    normal:{
+                        color: function(params){
+                            var index_color = params.name;
+                            if(index_color=="one"){
+                                return '#1E4F79';
+                            }else if(index_color=='two') {
+                                return 'transparent';
+                            }else if(index_color=='three'){
+                                return '#008BFF'
+                            }
+                        } 
+                    }
+                }
+            },
+            {
+                type:'pie',
+                radius: ['59%', '60%'],
+                silent:true,  //不触发鼠标事件，及鼠标放上去无效果
+                data:[
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    
+                ],
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                },
+                itemStyle:{
+                    normal:{
+                        color: function(params){
+                            var index_color = params.name;
+                            if(index_color=="one"){
+                                return '#0e375f';
+                            }else if(index_color=='two') {
+                                return 'transparent';
+                            }
+                        } 
+                    }
+                }
+            },
+            {
+                type:'pie',
+                radius: ['88%', '89%'],
+                silent:true,  //不触发鼠标事件，及鼠标放上去无效果
+                data:[
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    {value:1, name:'one'},
+                    {value:1, name:'two'},
+                    
+                ],
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                },
+                itemStyle:{
+                    normal:{
+                        color: function(params){
+                            var index_color = params.name;
+                            if(index_color=="one"){
+                                return '#0e375f';
+                            }else if(index_color=='two') {
+                                return 'transparent';
+                            }
+                        } 
+                    }
+                }
+            },
+            {
+                type:'pie',
+                radius: ['95%', '96%'],
+                silent:true,  //不触发鼠标事件，及鼠标放上去无效果
+                data:[
+                    {value:1, name:'one'},
+                ],
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                },
+                itemStyle:{
+                    color:'#0e375f',
+                }
+            }
+        ]
+    }
+    myChart.setOption(option, true);
+    return myChart; 
+}
 
 //圆环
 function annulus(ID){
@@ -189,6 +824,9 @@ function polarChar(ID) {
             axisTick:{
                 show:false
             },
+            nameTextStyle:{
+                color:"#fff"
+            },
             z:999,
             data: xData
         },
@@ -198,15 +836,17 @@ function polarChar(ID) {
             type: 'bar', 
             coordinateSystem: 'polar',
             itemStyle: {
-                normal: {
-                    color: new echarts.graphic.LinearGradient(
-                        0, 0, 0, 1,
-                        [
-                            {offset: 0, color: '#2b84d6'},
-                            {offset: 0.5, color: '#00b2eb'},
-                            {offset: 0.99, color: '#00e8e8'}
-                        ]
-                    )
+                color:{
+                    type: 'linear',
+                    x: 0,
+                    y: 0,
+                    x2: 0,
+                    y2: 1,
+                    colorStops: [
+                        {offset: 0, color: '#2b84d6'},
+                        {offset: 0.5, color: '#00b2eb'},
+                        {offset: 0.99, color: '#00e8e8'}
+                    ],
                 }
             },
             data: yData,
@@ -332,21 +972,28 @@ function pieChar(ID) {
                 type:'pie',
                 radius: ['50%', '70%'],
                 center: ['50%', '40%'],
-                avoidLabelOverlap: false,
-                hoverAnimation:false,
+				//是否启用防止标签重叠策略，默认开启，在标签拥挤重叠的情况下会挪动各个标签的位置，防止标签间的重叠。
+				//如果不需要开启该策略，例如圆环图这个例子中需要强制所有标签放在中心位置，可以将avoidLabelOverlap该值设为 false。
+                avoidLabelOverlap: false,  
+                hoverAnimation:false, //放大的动画效果
                 hoverOffset:5,  //高亮扇区的偏移距离,默认10，就是hover时候的放大的距离
                 silent:true,
                 label: {
                     normal: {
                         show: true,
                         position: 'center',
-                        formatter:function(){
-                            return '73%\r\n使用率'
-                        },
-                        textStyle: {
-                            fontSize: '30',
-                            fontWeight: 'bold',
-                            color:"#fff"
+                        formatter:'{num|73%}\r\n{text|使用率}',
+                        rich: {
+                            num: {
+                                fontSize: 50,
+                                color:'#f00'
+                            },
+                            text: {
+                                color: '#fff',
+                                fontSize: 16,
+                                padding: [10, 0],
+                                borderRadius: 2
+                            }
                         },
                         
                     },
@@ -411,14 +1058,29 @@ function areaChar(ID){
         {
             name:'机房实时总电能',
             type:'line',
-            areaStyle: {normal: {color:new echarts.graphic.LinearGradient(
-                        0, 0, 0, 1,
-                        [
-                            {offset: 0, color: '#3695f7'},
-                            {offset: 0.5, color: '#123b62'},
-                            {offset: 0.99, color: '#0a2137'}
-                        ]
-                    )}},
+            areaStyle: {
+                color:{
+                    type: 'linear',
+                    x: 0,
+                    y: 0,
+                    x2: 0,
+                    y2: 1,
+                    colorStops: [
+                        {offset: 0, color: '#3695f7'},
+                        {offset: 0.5, color: '#123b62'},
+                        {offset: 0.99, color: '#0a2137'}
+                    ],
+                  }
+                  //一下是echarts3的用法
+                // normal: {color:new echarts.graphic.LinearGradient(
+                //         0, 0, 0, 1,
+                //         [
+                //             {offset: 0, color: '#3695f7'},
+                //             {offset: 0.5, color: '#123b62'},
+                //             {offset: 0.99, color: '#0a2137'}
+                //         ]
+                // )}
+            },
             smooth:"true", //平滑
             //symbol:"line", //不要圆圈
             symbolSize:2, //平滑的时候设置为0
