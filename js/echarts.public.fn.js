@@ -74,6 +74,359 @@ wsConnection("1236","",function(result){
         $(".mapChar_list").show();
     }
 });
+
+//雷达扫描
+function radarChar(ID){
+    var myChart = echarts.init(document.getElementById(ID));
+    var option={
+        tooltip: {
+            trigger: 'item',
+            formatter: "{b}: {c} ({d}%)"
+        },
+        series: [
+    // {
+                //     type:'pie',
+                //     radius: ['1%', '86%'],
+                //     startAngle:angle,
+                //     silent:true,  
+                //     data:[
+                //         {value:1, name:'one'},
+                //         {value:5, name:'two'},
+                //     ],
+                //     label: {
+                //         normal: {
+                //             show: false,
+                //             position: 'center'
+                //         },
+                //     },
+                //     itemStyle:{
+                //         normal:{
+                //             color: function(params){
+                //                 var index_color = params.name;
+                //                 if(index_color=="one"){
+                //                     var color={
+                //                         type: 'radial',
+                //                         x: 0.5,
+                //                         y: 0.5,
+                //                         r:2,
+                //                         colorStops: [
+                //                             {offset: 0, color: '#0174E0'},
+                //                             {offset: 1, color: 'transparent'}
+                //                         ],
+                //                     }
+                //                     return color;
+                //                 }else if(index_color=='two') {
+                //                     return 'transparent';
+                //                 }
+                //             }
+                //         }
+                //     }
+                // },
+                // {
+                //     type:'pie',
+                //     radius: ['0%', '1.5%'],
+                //     silent:true,  
+                //     data:[
+                //         {value:1, name:'one'},
+                //     ],
+                //     label: {
+                //         normal: {
+                //             show: false,
+                //             position: 'center'
+                //         },
+                //     },
+                //     itemStyle:{
+                //         normal:{
+                //             color: '#1E4F79'
+                //         }
+                //     }
+                // },
+                {
+                    type:'pie',
+                    radius: ['25%', '26%'],
+                    silent:true,  
+                    data:[
+                        {value:1, name:'one'},
+                    ],
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                    },
+                    itemStyle:{
+                        normal:{
+                            color: '#1E4F79'
+                        }
+                    }
+                },
+                {
+                    type:'pie',
+                    radius: ['45%', '46%'],
+                    silent:true,  
+                    data:[
+                        {value:1, name:'one'},
+                    ],
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                    },
+                    itemStyle:{
+                        normal:{
+                            color: '#1E4F79'
+                        }
+                    }
+                },
+                {
+                    type:'pie',
+                    radius: ['65%', '66%'],
+                    silent:true,  
+                    data:[
+                        {value:1, name:'one'},
+                    ],
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                    },
+                    itemStyle:{
+                        normal:{
+                            color: '#1E4F79'
+                        }
+                    }
+                },
+                {
+                    type:'pie',
+                    radius: ['85%', '86%'],
+                    silent:true,  
+                    data:[
+                        {value:1, name:'one'},
+                    ],
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                    },
+                    itemStyle:{
+                        normal:{
+                            color: '#1E4F79'
+                        }
+                    }
+                },
+                {
+                    type:'pie',
+                    radius: ['89%', '91%'],
+                    silent:true,  
+                    data:[
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'three'},
+                        {value:1, name:'four'},
+                        {value:1, name:'five'},
+                        {value:1, name:'six'},
+                        {value:1, name:'seven'},
+                        {value:1, name:'eight'}
+                    ],
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                    },
+                    itemStyle:{
+                        normal:{
+                            color: function(params){
+                                var index_color = params.name;
+                                if(index_color=="one"||index_color=='three'||index_color=='five'||index_color=='seven'){
+                                    return '#1E4F79';
+                                }else if(index_color=='two'||index_color=='four'||index_color=='six'||index_color=='eight') {
+                                    return 'transparent';
+                                }
+                            } 
+                        }
+                    }
+                },
+                {
+                    type:'pie',
+                    radius: ['94%', '95%'],
+                    silent:true,  
+                    data:[
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        {value:1, name:'one'},
+                        {value:1, name:'two'},
+                        
+                    ],
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                    },
+                    itemStyle:{
+                        normal:{
+                            color: function(params){
+                                var index_color = params.name;
+                                if(index_color=="one"){
+                                    return '#092A50';
+                                }else if(index_color=='two') {
+                                    return 'transparent';
+                                }
+                            } 
+                        }
+                    }
+                },
+                
+            ]
+        }
+        myChart.setOption(option, true);
+        return myChart;
+}
+
 //两个pie
 function twopieChar(ID){
     var myChart = echarts.init(document.getElementById(ID));
@@ -110,7 +463,7 @@ function twopieChar(ID){
                             if(index_color=="one"||index_color=='three'||index_color=='five'){
                                 return '#1E4F79';
                             }else if(index_color=='two'||index_color=='four'||index_color=='six') {
-                                return '#0D2941';
+                                return 'transparent';
                             }
                         } 
                     }
@@ -1802,28 +2155,27 @@ function hbarChar(ID){
                 name: '告警提示',
                 type: 'bar',
                 stack: 'all',
-                barWidth: '50%',
+                barWidth: '20%',
                 data: [400, 302, 301, 334, 390, 330, 400]
             },
             {
                 name: '一般告警',
                 type: 'bar',
                 stack: 'all',
-                barWidth: '50%',
+                barWidth: '20%',
                 data: [120, 132, 101, 134, 90, 230, 400]
             },
             {
                 name: '重要告警',
                 type: 'bar',
                 stack: 'all',
-                barWidth: '50%',
+                barWidth: '20%',
                 data: [220, 182, 191, 234, 290, 330, 400]
             },
             {
                 name: '紧急告警',
                 type: 'bar',
-                stack: 'all',
-                barWidth: '50%',
+                barWidth: '20%',
                 data: [150, 212, 201, 154, 190, 330, 400]
             }
         ]
@@ -1857,7 +2209,7 @@ function barCharWD(ID){
         tooltip : {
             trigger: 'axis',
             axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                type : 'line'        // 默认为直线，可选为：'line' | 'shadow'
             },
             formatter:'{b}：{c}'
         },

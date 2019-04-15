@@ -36,6 +36,7 @@ var pic_img2 = drawWater("pic_img2", {
     color: ["#02dde0", "#6ff9f9"]
 });
 
+var radar=radarChar("radar");
 var piemore = piemoreChar("piemoreChar");
 var hChar=hbarChar("hbarChar");
 var charWD=barCharWD("barCharWD");
@@ -49,6 +50,7 @@ var annulus=annulus("annulus")
 console.log(piemore)
 $(window).resize(function () {
     emSize()
+    radar.resize();
     morepie.resize();
     twopie.resize();
     polar.resize();
