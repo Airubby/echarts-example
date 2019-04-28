@@ -1462,7 +1462,13 @@ function areaChar(ID){
             textStyle:{
                 color:"#fff"
             },
-            data:["实时IT设备电能", "机房实时总电能"]
+            // data:["实时IT设备电能", "机房实时总电能"]
+            data:[{
+                name:"实时IT设备电能",
+                icon:'rect'
+            },{
+                name: "机房实时总电能",
+            }]
         },
         grid: {
             left: '15px',
@@ -1545,200 +1551,200 @@ function mapChar(ID){
 
     var myChart = echarts.init(document.getElementById(ID));
     var data = [
-    {
-        name: '惠州', 
-        value: 300,
-        color:"#f00",
-        fontSize: 16,
-        position: 'right',
-        tooltip : {
-            trigger: 'item',
-            formatter : '{b}'
-        },
-    },
-    {name: '深圳', value: 200,color:"#fff",fontSize: 14,position: 'left',}
-];
-
-var geoCoordMap = {
-    '惠州':[114.4,23.09],
-    '深圳':[114.07,22.62]
-};
-
-function convertData(data) {
-    var res = [];
-    for (var i = 0; i < data.length; i++) {
-        var geoCoord = geoCoordMap[data[i].name];
-        if (geoCoord) {
-            res.push({
-                name: data[i].name,
-                itemStyle:{
-                    normal:{
-                        color:data[i].color,
-                    }
-                },
-                label:{
-                    normal:{
-                        fontSize:data[i].fontSize,
-                        position: data[i].position,
-                    }
-                },
-                markPoint:{
-                    data:[{
-                        type:"max",
-                        value: 222
-                    }]
-                },
-                value: geoCoord.concat(data[i].value)
-            });
-        }
-    }
-    return res;
-}
-    
-function randomValue() {
-    return Math.round(Math.random()*10);
-}
-option = {
-    // tooltip:{
-    //     trigger:'item',
-    //     alwaysShowContent:true,
-    //     formatter:function(params){
-    //         return '<span>1、温湿度过高告警</span>'
-    //     }
-    // },
-    visualMap: {
-        show:false,
-        min: 0,
-        max: 10,
-        seriesIndex: [1],
-        inRange: {
-            color: ['#27b1de', '#20689f']
-        },
-        calculable : true
-    },
-    geo: {
-            map: 'china',
-            roam: false,
-            top:'5%',
-            bottom:'0',
-            label: {
-                emphasis: {
-                    show: false
-                }
+        {
+            name: '惠州', 
+            value: 300,
+            color:"#f00",
+            fontSize: 16,
+            position: 'right',
+            tooltip : {
+                trigger: 'item',
+                formatter : '{b}'
             },
-            itemStyle: {
-                normal: {
-                    areaColor: '#0d2941',
-                    borderColor: '#0d2941'
-                },
-                emphasis:{
-                    areaColor: null,
-                    shadowOffsetX: 0,
-                    shadowOffsetY: 0,
-                    shadowBlur: 20,
-                    borderWidth: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                }
+        },
+        {name: '深圳', value: 200,color:"#fff",fontSize: 14,position: 'left',}
+    ];
+
+    var geoCoordMap = {
+        '惠州':[114.4,23.09],
+        '深圳':[114.07,22.62]
+    };
+
+    function convertData(data) {
+        var res = [];
+        for (var i = 0; i < data.length; i++) {
+            var geoCoord = geoCoordMap[data[i].name];
+            if (geoCoord) {
+                res.push({
+                    name: data[i].name,
+                    itemStyle:{
+                        normal:{
+                            color:data[i].color,
+                        }
+                    },
+                    label:{
+                        normal:{
+                            fontSize:data[i].fontSize,
+                            position: data[i].position,
+                        }
+                    },
+                    markPoint:{
+                        data:[{
+                            type:"max",
+                            value: 222
+                        }]
+                    },
+                    value: geoCoord.concat(data[i].value)
+                });
             }
+        }
+        return res;
+    }
+    
+    function randomValue() {
+        return Math.round(Math.random()*10);
+    }
+    var option = {
+        // tooltip:{
+        //     trigger:'item',
+        //     alwaysShowContent:true,
+        //     formatter:function(params){
+        //         return '<span>1、温湿度过高告警</span>'
+        //     }
+        // },
+        visualMap: {
+            show:false,
+            min: 0,
+            max: 10,
+            seriesIndex: [1],
+            inRange: {
+                color: ['#27b1de', '#20689f']
+            },
+            calculable : true
         },
-        
-    series: [
-        {
-            type: 'scatter',
-            coordinateSystem: 'geo',
-            symbolSize: 10,
-            symbolRotate: 35,
-            itemStyle: {
-                normal: {
-                    color: '#F06C00'
+        geo: {
+                map: 'china',
+                roam: false,
+                top:'5%',
+                bottom:'0',
+                label: {
+                    emphasis: {
+                        show: false
                     }
-                }
-            },
-        {
-            type: 'map',
-            geoIndex: 0,
-            data:[
-                {name: '北京', value: randomValue()},
-                {name: '天津', value: randomValue()},
-                {name: '上海', value: randomValue()},
-                {name: '重庆', value: randomValue()},
-                {name: '河北', value: randomValue()},
-                {name: '河南', value: randomValue()},
-                {name: '云南', value: randomValue()},
-                {name: '辽宁', value: randomValue()},
-                {name: '黑龙江', value: randomValue()},
-                {name: '湖南', value: randomValue()},
-                {name: '安徽', value: randomValue()},
-                {name: '山东', value: randomValue()},
-                {name: '新疆', value: randomValue()},
-                {name: '江苏', value: randomValue()},
-                {name: '浙江', value: randomValue()},
-                {name: '江西', value: randomValue()},
-                {name: '湖北', value: randomValue()},
-                {name: '广西', value: randomValue()},
-                {name: '甘肃', value: randomValue()},
-                {name: '山西', value: randomValue()},
-                {name: '内蒙古', value: randomValue()},
-                {name: '陕西', value: randomValue()},
-                {name: '吉林', value: randomValue()},
-                {name: '福建', value: randomValue()},
-                {name: '贵州', value: randomValue()},
-                {name: '广东', value: randomValue()},
-                {name: '青海', value: randomValue()},
-                {name: '西藏', value: randomValue()},
-                {name: '四川', value: randomValue()},
-                {name: '宁夏', value: randomValue()},
-                {name: '海南', value: randomValue()},
-                {name: '台湾', value: randomValue()},
-                {name: '香港', value: randomValue()},
-                {name: '澳门', value: randomValue()}
-            ]
-        },
-        {
-            type: 'effectScatter',
-            coordinateSystem: 'geo',
-            data: convertData(data.sort(function (a, b) {
-                return b.value - a.value;
-            }).slice(0, 2)),
-            symbolSize: function (val) {
-                return val[2] / 30;
-            },
-            showEffectOn: 'render',
-            rippleEffect: {
-                brushType: 'stroke'
-            },
-            hoverAnimation: true,
-            label: {
-                normal: {
-                    
-                    formatter: '{b}',
-                    
-                    show: true
-                }
-            },
-            itemStyle: {
-                normal: {
-                    color: '#f00',
-                    shadowBlur: 1,
-                    shadowColor: '#fff'
+                },
+                itemStyle: {
+                    normal: {
+                        areaColor: '#0d2941',
+                        borderColor: '#0d2941'
+                    },
+                    emphasis:{
+                        areaColor: null,
+                        shadowOffsetX: 0,
+                        shadowOffsetY: 0,
+                        shadowBlur: 20,
+                        borderWidth: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
                 }
             },
             
-            zlevel: 1
-        },
-        {
-            type:'custom',
-            coordinateSystem: 'geo',
-            geoIndex:0,
-            renderItem: function (params, api) {
-                console.log(params);
-                console.log(api)
+        series: [
+            {
+                type: 'scatter',
+                coordinateSystem: 'geo',
+                symbolSize: 10,
+                symbolRotate: 35,
+                itemStyle: {
+                    normal: {
+                        color: '#F06C00'
+                        }
+                    }
+                },
+            {
+                type: 'map',
+                geoIndex: 0,
+                data:[
+                    {name: '北京', value: randomValue()},
+                    {name: '天津', value: randomValue()},
+                    {name: '上海', value: randomValue()},
+                    {name: '重庆', value: randomValue()},
+                    {name: '河北', value: randomValue()},
+                    {name: '河南', value: randomValue()},
+                    {name: '云南', value: randomValue()},
+                    {name: '辽宁', value: randomValue()},
+                    {name: '黑龙江', value: randomValue()},
+                    {name: '湖南', value: randomValue()},
+                    {name: '安徽', value: randomValue()},
+                    {name: '山东', value: randomValue()},
+                    {name: '新疆', value: randomValue()},
+                    {name: '江苏', value: randomValue()},
+                    {name: '浙江', value: randomValue()},
+                    {name: '江西', value: randomValue()},
+                    {name: '湖北', value: randomValue()},
+                    {name: '广西', value: randomValue()},
+                    {name: '甘肃', value: randomValue()},
+                    {name: '山西', value: randomValue()},
+                    {name: '内蒙古', value: randomValue()},
+                    {name: '陕西', value: randomValue()},
+                    {name: '吉林', value: randomValue()},
+                    {name: '福建', value: randomValue()},
+                    {name: '贵州', value: randomValue()},
+                    {name: '广东', value: randomValue()},
+                    {name: '青海', value: randomValue()},
+                    {name: '西藏', value: randomValue()},
+                    {name: '四川', value: randomValue()},
+                    {name: '宁夏', value: randomValue()},
+                    {name: '海南', value: randomValue()},
+                    {name: '台湾', value: randomValue()},
+                    {name: '香港', value: randomValue()},
+                    {name: '澳门', value: randomValue()}
+                ]
             },
-            data:[2],
-        }
-        
-    ]
-};
+            {
+                type: 'effectScatter',
+                coordinateSystem: 'geo',
+                data: convertData(data.sort(function (a, b) {
+                    return b.value - a.value;
+                }).slice(0, 2)),
+                symbolSize: function (val) {
+                    return val[2] / 30;
+                },
+                showEffectOn: 'render',
+                rippleEffect: {
+                    brushType: 'stroke'
+                },
+                hoverAnimation: true,
+                label: {
+                    normal: {
+                        
+                        formatter: '{b}',
+                        
+                        show: true
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#f00',
+                        shadowBlur: 1,
+                        shadowColor: '#fff'
+                    }
+                },
+                
+                zlevel: 1
+            },
+            {
+                type:'custom',
+                coordinateSystem: 'geo',
+                geoIndex:0,
+                renderItem: function (params, api) {
+                    console.log(params);
+                    console.log(api)
+                },
+                data:[2],
+            }
+            
+        ]
+    };
     myChart.setOption(option, true);
     myChart.dispatchAction({
         type: 'showTip',
@@ -1752,7 +1758,7 @@ option = {
 //仪表盘
 function gaugeChar(ID){
     var myChart = echarts.init(document.getElementById(ID));
-   var option = {
+    var option = {
         
         tooltip : {
             formatter: "{a} : {c}"
@@ -2155,7 +2161,7 @@ function hbarChar(ID){
                 name: '告警提示',
                 type: 'bar',
                 stack: 'all',
-                barWidth: '20%',
+                barWidth: '50%',
                 data: [400, 302, 301, 334, 390, 330, 400]
             },
             {
@@ -2195,7 +2201,7 @@ function barCharWD(ID){
 
     var myChart = echarts.init(document.getElementById(ID));
     
-    option = {
+    var option = {
         
         color: ['#3398DB'],
         title:{
@@ -2313,7 +2319,7 @@ function barCharSD(ID){
 
     var myChart = echarts.init(document.getElementById(ID));
     
-    option = {
+    var option = {
         
         color: ['#3398DB'],
         title:{
