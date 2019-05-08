@@ -573,6 +573,177 @@ function moreLegend(ID){
     myChart.setOption(option, true);
     return myChart; 
 }
+//点击legend切换显示
+function clickLegend(ID){
+    var yData=['01','02','03','04','05','06','07'];
+    var legend=["温度","电压","内阻"];
+    var title=["℃","V","Ω"];
+    var color=["#FFB34C","#5DC49E","#378EE9"];
+    var series=[
+            {
+                name: "温度",
+                type: 'bar',
+                barWidth: '20%',
+                data: [120, 132, 101, 134, 90, 230, 400]
+            },
+            {
+                name: "电压",
+                type: 'bar',
+                barWidth: '20%',
+                data: [220, 182, 191, 234, 290, 330, 400]
+            },
+            {
+                name: "内阻",
+                type: 'bar',
+                barWidth: '20%',
+                data: [220, 182, 191, 234, 290, 330, 400]
+            }
+        ];
+    var show=legend[0];
+    var titlebg=color[0];
+    var showtitle=title[0];
+    var selected={}
+    var rich={};
+    for(let i=0;i<legend.length;i++){
+        if(i==0){
+            selected[legend[i]]=true
+        }else{
+            selected[legend[i]]=false
+        }
+        rich["rich"+i]={color:color[i]};
+    }
+    rich["rich"+legend.length]={color:"#ccc"};
+    
+    var myChart = echarts.init(document.getElementById(ID));
+    var option = {
+        color:color,
+        title:{
+            text:showtitle,  
+            x:'left',
+            top: 5,
+            backgroundColor:titlebg,
+            textStyle:{
+                color:"#fff",
+                fontSize:14,
+            },
+        },
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            } 
+        },
+        grid: {
+            left: '65px',
+            right: '25px',
+            top:'15%',
+            bottom: '15%',
+        },
+        legend: {
+            top:'5px',
+            right:'0',
+            textStyle:{
+                rich:rich
+            },
+            data: legend,
+            formatter: function(name) {
+                var index = 0;
+                legend.forEach(function(value,i){
+                    if(value == name){
+                        index = i;
+                    }
+                });
+                if(name==show){
+                    return '{rich'+index+'|'+legend[index]+'}';
+                }else{
+                    return '{rich'+legend.length+'|'+legend[index]+'}';
+                }
+                
+            },
+            selected:selected
+        },
+        xAxis:  {
+            type: 'category',
+            axisLine:{
+                lineStyle:{
+                    color:"#304a5d",
+                    width:3,
+                }
+            },
+            splitLine:{
+                show:false,
+            },
+            axisTick:{
+                show:false
+            },
+            axisLabel:{
+                interval:0,  //强制显示所有标签
+                color:'#fff',
+                padding:4,
+            },
+            data: yData,
+        },
+        yAxis: {
+            type: 'value',
+            axisLine:{
+                lineStyle:{
+                    color:"#304a5d",
+                    width:3,
+                }
+            },
+            axisTick:{
+                show:false
+            },
+            splitLine:{
+                show:false,
+                lineStyle:{
+                    color:"#213342",
+                    width:1,
+                    type:"dashed",
+                }
+            },
+            axisLabel:{
+                color:"#fff"
+            },
+            
+        },
+        series: series
+    };
+    
+    function legendselectchanged(param){
+        console.log(param)
+        let selected=param.selected;
+        let stitle,bgcolor;
+        for(let item in selected){
+            if(item==param.name){
+                selected[item]=true;
+            }else{
+                selected[item]=false;
+            }
+        }
+        for(let i=0;i<legend.length;i++){
+            if(legend[i]==param.name){
+                stitle=title[i];
+                bgcolor=color[i];
+                break;
+            }
+        }
+        show=param.name;
+        myChart.setOption({
+            title:{
+                text:stitle,
+                backgroundColor:bgcolor
+            },
+            legend:{
+                selected:selected
+            }
+        });
+    }
+    
+    myChart.setOption(option, true);
+    myChart.on("legendselectchanged",legendselectchanged)
+    return myChart; 
+}
 //两个pie
 function twopieChar(ID){
     var myChart = echarts.init(document.getElementById(ID));

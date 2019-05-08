@@ -21,6 +21,7 @@ function emSize() {
 }
 emSize()
 var mLegend=moreLegend("Legend");
+var cLegend=clickLegend("cLegend");
 var morepie=morepieChar("morepie");
 var twopie=twopieChar("twopie");
 var polar = polarChar("polarChar");
@@ -52,6 +53,7 @@ console.log(piemore)
 $(window).resize(function () {
     emSize()
     mLegend.resize();
+    cLegend.resize();
     radar.resize();
     morepie.resize();
     twopie.resize();
