@@ -20,6 +20,7 @@ function emSize() {
     });
 }
 emSize()
+var mLegend=moreLegend("Legend");
 var morepie=morepieChar("morepie");
 var twopie=twopieChar("twopie");
 var polar = polarChar("polarChar");
@@ -50,6 +51,7 @@ var annulus=annulus("annulus")
 console.log(piemore)
 $(window).resize(function () {
     emSize()
+    mLegend.resize();
     radar.resize();
     morepie.resize();
     twopie.resize();

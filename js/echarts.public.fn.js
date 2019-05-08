@@ -426,7 +426,153 @@ function radarChar(ID){
         myChart.setOption(option, true);
         return myChart;
 }
-
+//自定义X轴显示
+function moreLegend(ID){
+    var yData=['01','02','03','04','05','06','07'];
+    var color=["#5984CD","#EF5959","#5984CD"];
+    var myChart = echarts.init(document.getElementById(ID));
+    var option = {
+        color:color,
+        title:{
+            text:"温度(℃)",  
+            x:'left',
+            top: 5,
+            textStyle:{
+                color:"#fff",
+                fontSize:14,
+            },
+        },
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            } 
+        },
+        legend: {
+            top:'5px',
+            right:'10px',
+            textStyle:{
+                rich:{
+                    a:{
+                        color:color[0]
+                    },
+                    b:{
+                        color:color[1]
+                    }
+                }
+            },
+            data: ["上","中"],
+            formatter: function(name) {
+                var index = 0;
+                var clientlabels = ['冷通道','热通道'];
+                var data=["上","中"];
+                data.forEach(function(value,i){
+                    if(value == name){
+                        index = i;
+                    }
+                });
+                if(index==0){
+                    return '{a|'+clientlabels[index]+'}';
+                }else{
+                    return '{b|'+clientlabels[index]+'}';
+                }
+                
+            },
+        },
+        xAxis:  {
+            name:'机柜编码',
+            nameLocation:'start',
+            nameTextStyle:{
+                color:'#fff',
+                fontSize: 15,
+                padding:[70,0,0,0]
+            },
+            type: 'category',
+            axisLine:{
+                lineStyle:{
+                    color:"#304a5d",
+                    width:3,
+                }
+            },
+            splitLine:{
+                show:false,
+            },
+            axisTick:{
+                show:false
+            },
+            axisLabel:{
+                interval:0,  //强制显示所有标签
+                backgroundColor:'#123234',
+                color:'#fff',
+                padding:4,
+                // formatter:'上\r中\r下\n{value}',
+                formatter:function(value){
+                    var info='{text|上}{text|中}{text|下}\n{value|'+value+'}'
+                    return info
+                },
+                rich:{
+                    text:{
+                        color:"#fff",
+                        padding:[0,3,3,3],
+                        height: 20,
+                        lineHeight: 20
+                    },
+                    value:{
+                        color:"#fff",
+                        lineHeight: 20
+                    },
+                }
+            },
+            data: yData,
+        },
+        yAxis: {
+            type: 'value',
+            axisLine:{
+                lineStyle:{
+                    color:"#304a5d",
+                    width:3,
+                }
+            },
+            axisTick:{
+                show:false
+            },
+            splitLine:{
+                show:false,
+                lineStyle:{
+                    color:"#213342",
+                    width:1,
+                    type:"dashed",
+                }
+            },
+            axisLabel:{
+                color:"#fff"
+            },
+            
+        },
+        series: [
+            {
+                name: '上',
+                type: 'bar',
+                barWidth: '20%',
+                data: [120, 132, 101, 134, 90, 230, 400]
+            },
+            {
+                name: '中',
+                type: 'bar',
+                barWidth: '20%',
+                data: [220, 182, 191, 234, 290, 330, 400]
+            },
+            {
+                name: '下',
+                type: 'bar',
+                barWidth: '20%',
+                data: [150, 212, 201, 154, 190, 330, 400]
+            }
+        ]
+    };
+    myChart.setOption(option, true);
+    return myChart; 
+}
 //两个pie
 function twopieChar(ID){
     var myChart = echarts.init(document.getElementById(ID));
@@ -681,7 +827,7 @@ function morepieChar(ID){
                         textStyle: {
                             fontSize: '30',
                             fontWeight: 'bold',
-                            color:"#000"
+                            color:"#fff"
                         },
                     },
                 },
