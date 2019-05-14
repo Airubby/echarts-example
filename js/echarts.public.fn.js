@@ -434,12 +434,23 @@ function moreLegend(ID){
     var option = {
         color:color,
         title:{
-            text:"温度(℃)",  
+            show:true,
+            text:"{text|温度(℃)} {subtext|模拟副标题}",  
             x:'left',
             top: 5,
             textStyle:{
-                color:"#fff",
-                fontSize:14,
+                rich:{
+                    text:{
+                        color: "#fff",
+                        fontSize: 14,
+                        backgroundColor:"#EF5959",
+                        padding:[4,2,4,2],
+                    },
+                    subtext:{
+                        fontSize: 12,
+                        color:"#fff",
+                    }
+                }
             },
         },
         tooltip : {
