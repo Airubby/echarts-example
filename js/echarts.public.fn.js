@@ -1438,6 +1438,10 @@ function annulus(ID){
                         }
                     }
                 },
+                itemStyle:{
+                    borderColor:"#fff",  
+                    borderWidth: 1,
+                },
                 labelLine: {
                     normal: {
                         show: false
@@ -1734,7 +1738,22 @@ function areaChar(ID){
             type:'line',
             smooth:"true", //平滑
             symbolSize:'40px',
-            data:[320, 232, 301, 234, 390, 230, 310,18, 391, 234, 290, 343, 310]
+            data:[320, 232, 301, 234, 390, 230, 310,18, 391, 234, 290, 343, 310],
+            markLine: {
+                silent: true,  //不触发鼠标事件
+                symbol:'none',
+                label:{
+                    position: 'middle'
+                },
+                data: [{
+                    yAxis:50,
+                    lineStyle:{
+                        color:'#f00'
+                    }
+                }, {
+                    yAxis: 300
+                }]
+            }
         },
         {
             name:'机房实时总电能',
@@ -2228,36 +2247,70 @@ function gaugeChar2(ID,value,min,max,title,color){
             {
                 name: title,
                 type: 'gauge',
-                radius:'100%',
+                silent:true,
+                radius:'120%',
                 min:min,
                 max:max,
                 startAngle:180,
                 endAngle:0,
                 splitNumber:6,
-                center: ['50%', '60%'],
+                center: ['50%', '70%'],
                 axisLine:{
                     lineStyle:{
                         color:color,
-                        width:'10',
+                        width:'30',
                     }
                 },
                 splitLine:{
                     show:true,
-                    length:'10',
+                    length:'30',
+                    lineStyle:{
+                        color:"#B3D6EF"
+                    }
+                },
+                axisLabel:{
+                    show:true,
+                    color:"#B3D6EF"
                 },
                 pointer:{
-                    length:'75%',
+                    length:'70%',
                     width:'5%'
                 },
+                itemStyle:{
+                    color: "#B3D6EF"
+                },
+                // detail: {
+                //     show: true,
+                //     textStyle: {
+                //         fontSize: 16,
+                //         color:'#4A78FF',
+                //     },
+                //     formatter: title+'={value}',
+                //     offsetCenter: ['0%', '20%'],
+                // },
                 detail: {
                     show: true,
-                    textStyle: {
-                        fontSize: 16,
-                        color:'#4A78FF',
+                    lineHeight: 15,
+                    offsetCenter: ['0%', '0%'],
+                    formatter:'{num|'+value+'}\n{text|pue}',
+                    rich: {
+                        num: {
+                            width:80,
+                            height:80,
+                            fontSize:18,
+                            borderWidth:2,
+                            borderColor:"#B3D6EF",
+                            borderRadius:[80,80,80,80],
+                            backgroundColor:"#4785B1",
+                            color:"#fff",
+                        },
+                        text: {
+                            color: '#fff',
+                            fontSize: 12,
+                            padding: [10, 0],
+                            borderRadius: 2
+                        }
                     },
-                    formatter: title+'={value}',
-                    offsetCenter: ['0%', '50%'],
-                    
 
                 },
                 data: [{value: value}]
