@@ -30,7 +30,7 @@ function open_ajax(url, parameter, request,type, error, async) {
         type: type,
         url: url,
         data: parameter,
-        dataType: 'JSONP',
+        dataType: 'JSONP',  
         async: async ? async : true,
         cache:false,
         error: function () {
@@ -1631,8 +1631,13 @@ function polarChar1(ID) {
     };
     
     myChart.setOption(option, true);
+    window.addEventListener("resize", function() { 
+        setTimeout(function(){
+            myChart.resize();
+        },0)
+    });
     
-    return myChart; 
+    return {myChart:myChart,option:option}; 
 }
 
 function pieChar(ID) {
@@ -1743,7 +1748,8 @@ function areaChar(ID){
                 silent: true,  //不触发鼠标事件
                 symbol:'none',
                 label:{
-                    position: 'middle'
+                    position: 'middle',
+                    show:false, //不显示数字
                 },
                 data: [{
                     yAxis:50,
@@ -1851,6 +1857,8 @@ function areaChar(ID){
         yAxis : [
             {
                 type : 'value',
+                scale:true,
+                min:10,
                 splitLine:{
                     show:false,
                 },
@@ -2337,8 +2345,14 @@ function drawWater(domID, json) {
         series: [{
             type: 'liquidFill',
             radius: '95%',
+            shape: 'diamond',  //diamond:尖角正方形；roundRect:圆角正方形；pin:气球型
+            amplitude:20, //波浪高度 0，没有波浪，水平的
             backgroundStyle: {
-                color: 'transparent'
+                color: 'transparent',
+                borderColor: json.color[0],
+                borderWidth: 2,
+                shadowColor: 'rgba(0, 0, 0, 0.4)',
+                shadowBlur: 20
             },
             itemStyle: {
                 normal: {
@@ -2361,10 +2375,10 @@ function drawWater(domID, json) {
                         align: 'center',
                         baseline: 'middle'
                     },
-                    position: 'inside'
+                    position: 'inside' 
                 }
             },
-            waveAnimation: true,
+            waveAnimation: true,  //水是否动态
             data: [
         	{
         	    value: json.value,
@@ -2838,17 +2852,32 @@ function lineZoom(ID){
         },
         dataZoom: [
             {
-                show: true,
-                realtime: true,
+                show:false,
                 start: 30,
                 end: 70,
                 bottom:10,
             },
             {
-                type: 'inside',
-                realtime: true,
-                start: 30,
-                end: 70,
+                type: 'slider',
+                backgroundColor:"#041742",
+                dataBackground:{
+                    lineStyle:{
+                        color:"#2B4DAA"
+                    },
+                    areaStyle:{
+                        color:"#2B4DAA"
+                    }
+                },
+                fillerColor:"rgba(11,33,85,0.3)",
+                borderColor:"transparent",
+                handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                handleSize: '100%',
+                handleStyle: {
+                    color: '#223775',
+                },
+                textStyle:{
+                    color:"#BEC6DE"
+                }
             }
         ],
         grid: {
