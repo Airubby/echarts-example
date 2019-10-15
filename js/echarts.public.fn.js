@@ -74,7 +74,86 @@ wsConnection("1236","",function(result){
         $(".mapChar_list").show();
     }
 });
-
+function pieLegend(ID){
+    var myChart = echarts.init(document.getElementById(ID));
+    var option = {
+        color:["#72A6FD","#00AB6F","#FFC002"],
+        tooltip: {
+            trigger: 'item',
+            formatter: "{b}: {c} ({d}%)"
+		},
+		legend: {
+            bottom:'0px',
+            textStyle:{
+                color:"#fff",
+            },
+            data: ['机架设备', '场地设施','备品备件']
+        },
+        series: [
+		{
+                type:'pie',
+                radius: ['68%', '80%'],
+                silent:true,  //不触发鼠标事件，及鼠标放上去无效果
+                clockwise:false,  //false 逆时针方向
+                data:["中心展示2020"],
+				label: {
+                    normal: {
+                        show: true,
+                        position: 'center',
+                        formatter:'{num|2020}',
+                        rich: {
+                            num: {
+                                fontSize: 26,
+                                color:'#fff'
+                            },
+                        },
+                        textStyle: {
+                            fontSize: '30',
+                            fontWeight: 'bold',
+                            color:"#fff"
+                        },
+                    },
+                },
+                itemStyle:{
+                    normal:{
+                        color: function(params){
+                            return 'transparent';
+                        } 
+                    }
+                }
+            },
+            {
+                type:'pie',
+                radius: ['40%', '65%'],
+                label: {
+                    normal: {
+                        formatter: ' {b|{c} }\r\n{per|{d}%} ',
+                        rich: {
+                            b: {
+                                fontSize: 30,
+                                lineHeight: 33
+                            },
+                            per: {
+                                color: '#fff',
+                                fontSize: 18,
+                                padding: [2, 4],
+                                borderRadius: 2
+                            }
+                        }
+                    }
+                },
+                data:[
+                    {value:856, name:'机架设备'},
+                    {value:577, name:'场地设施'},
+                    {value:577, name:'备品备件'}
+                ]
+			},
+			
+        ]
+    };
+    myChart.setOption(option, true);
+    return myChart; 
+}
 //雷达扫描
 function radarChar(ID){
     var myChart = echarts.init(document.getElementById(ID));
@@ -2245,7 +2324,29 @@ function gaugeChar1(ID,value,all,title,color){
 //带刻度的带颜色分隔的仪表盘
 function gaugeChar2(ID,value,min,max,title,color){
     var value=1.53,min=1,max=2.2,title="PUE";
-    var color=[[0.333333, '#00AB6F'],[0.5,"#FFA63A"],[1, '#F73A00']];
+    // var color=[[0.333333, '#00AB6F'],[0.5,"#FFA63A"],[1, '#F73A00']];
+    var color=[
+        [0.3,new echarts.graphic.LinearGradient(
+                0, 1, 1, 0,   //依次对应右/下/左/上四个方位.
+                [
+                    {offset: 0, color: '#4476FF'},
+                    {offset: 1, color: 'rgba(68, 119, 250, 0.4)'}
+                ]
+            )],
+        [0.6,new echarts.graphic.LinearGradient(
+            0, 1, 1, 0,   //依次对应右/下/左/上四个方位. 
+            [
+                {offset: 0, color: 'rgba(68, 119, 250, 0.4)'},
+                {offset: 1, color: '#FFA63A'}
+            ]
+        )],[1, new echarts.graphic.LinearGradient(
+            1, 1, 0, 0,   //依次对应右/下/左/上四个方位. 
+            [
+                {offset: 0, color: '#F73A00'},
+                {offset: 1, color: '#FFA63A'}
+            ]
+        )]
+    ]
     var myChart = echarts.init(document.getElementById(ID));
     var option = {
         tooltip : {
@@ -2363,7 +2464,7 @@ function drawWater(domID, json) {
                 borderDistance: 0,
                 itemStyle: {
                     borderWidth: 2,
-                    borderColor: json.color[0],
+                    borderColor: 'transparent',
                 }
             },
             label: {
@@ -2931,7 +3032,10 @@ function lineZoom(ID){
                 },
                 axisLabel:{
                     color:"#fff",
-					formatter: '{value}'
+                    // formatter: '{value}'
+                    formatter: function (value, index) {
+                        return value.toString().indexOf(".")!=-1?value:value+".00";
+                    }
                 }
             }
         ],
