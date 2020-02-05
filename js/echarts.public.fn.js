@@ -1480,13 +1480,16 @@ function annulus(ID){
         },
         legend: {
             orient: 'vertical',
-            x: 'left',
-            y:'bottom',
+            x: '80%', //left,right
+            y:'center',
+            itemWidth:10,
+            itemHeight:10,
+            show:true,
             data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎'],
             formatter: function(name) {
                 var index = 0;
                 var clientlabels = ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎'];
-                var clientcounts = [335,310,234,135,1548];
+                var clientcounts = [335,310,234,135,548];
                 clientlabels.forEach(function(value,i){
                     if(value == name){
                         index = i;
@@ -1502,8 +1505,10 @@ function annulus(ID){
             {
                 name:'访问来源',
                 type:'pie',
-                radius: ['50%', '70%'],
+                radius: ['5%', '70%'],
+                //如果不需要开启该策略，例如圆环图这个例子中需要强制所有标签放在中心位置，可以将avoidLabelOverlap该值设为 false。
                 avoidLabelOverlap: false,
+                roseType: 'area',  //块状区域
                 label: {
                     normal: {
                         show: false,
@@ -1512,7 +1517,7 @@ function annulus(ID){
                     emphasis: {
                         show: true,
                         textStyle: {
-                            fontSize: '30',
+                            fontSize: '20',
                             fontWeight: 'bold'
                         }
                     }
@@ -1531,7 +1536,7 @@ function annulus(ID){
                     {value:310, name:'邮件营销'},
                     {value:234, name:'联盟广告'},
                     {value:135, name:'视频广告'},
-                    {value:1548, name:'搜索引擎'}
+                    {value:548, name:'搜索引擎'}
                 ]
             }
         ]
