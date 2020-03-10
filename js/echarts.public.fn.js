@@ -1480,8 +1480,12 @@ function annulus(ID){
         },
         legend: {
             orient: 'vertical',
-            x: 'left',
+            x: 'right',
             y:'bottom',
+            align:'left',
+            itemWidth:5,
+            itemHeight:5,
+            selectedMode:false, //点击不改变状态
             data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎'],
             formatter: function(name) {
                 var index = 0;
@@ -2475,6 +2479,9 @@ function drawWater(domID, json) {
                         fontSize: 12,
                         align: 'center',
                         baseline: 'middle'
+                    },
+                    formatter:function(param) {
+                        return (param.value*100).toFixed(2)+"%";
                     },
                     position: 'inside' 
                 }
