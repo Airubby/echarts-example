@@ -507,8 +507,8 @@ function radarChar(ID){
 }
 //自定义X轴显示
 function moreLegend(ID){
-    var yData=['01','02','03','04','05','06','07'];
-    var color=["#5984CD","#EF5959","#5984CD"];
+    var yData=['01','02','03'];
+    var color=["#5984CD","#EF5959"];
     var myChart = echarts.init(document.getElementById(ID));
     var option = {
         color:color,
@@ -539,6 +539,7 @@ function moreLegend(ID){
             } 
         },
         legend: {
+            selectedMode:false,//取消图例上的点击事件
             top:'5px',
             right:'10px',
             textStyle:{
@@ -551,11 +552,11 @@ function moreLegend(ID){
                     }
                 }
             },
-            data: ["上","中"],
+            data: ["上-冷","上-热"],
             formatter: function(name) {
                 var index = 0;
                 var clientlabels = ['冷通道','热通道'];
-                var data=["上","中"];
+                var data=["上-冷","上-热"];
                 data.forEach(function(value,i){
                     if(value == name){
                         index = i;
@@ -641,22 +642,40 @@ function moreLegend(ID){
         },
         series: [
             {
-                name: '上',
+                name: '上-冷',
                 type: 'bar',
-                barWidth: '20%',
-                data: [120, 132, 101, 134, 90, 230, 400]
+                barWidth: '5%',
+                data: [120, 132, 101]
             },
             {
-                name: '中',
+                name: '上-热',
                 type: 'bar',
-                barWidth: '20%',
-                data: [220, 182, 191, 234, 290, 330, 400]
+                barWidth: '5%',
+                data: [120, 132, 101]
             },
             {
-                name: '下',
+                name: '中-冷',
                 type: 'bar',
-                barWidth: '20%',
-                data: [150, 212, 201, 154, 190, 330, 400]
+                barWidth: '5%',
+                data: [220, 182, 191]
+            },
+            {
+                name: '中-热',
+                type: 'bar',
+                barWidth: '5%',
+                data: [220, 182, 191]
+            },
+            {
+                name: '下-冷',
+                type: 'bar',
+                barWidth: '5%',
+                data: [150, 212, 201]
+            },
+            {
+                name: '下-热',
+                type: 'bar',
+                barWidth: '5%',
+                data: [150, 212, 201]
             }
         ]
     };
@@ -2974,6 +2993,7 @@ function lineZoom(ID){
             },
             {
                 type: 'slider',
+                show:true,
                 backgroundColor:"#041742",
                 dataBackground:{
                     lineStyle:{
@@ -3055,8 +3075,25 @@ function lineZoom(ID){
         ],
         series : yData
     };
-    myChart.setOption(option, true);
-    
+    myChart.setOption(option);
+    myChart.on('datazoom', function (params){
+        //params里面有什么，可以打印出来看一下就明白
+        console.log(params);
+        //可以通过params获取缩放的起止百分比，但是鼠标滚轮和伸缩条拖动触发的params格式不同，所以用另一种方法
+        //获得图表数据数组下标
+        var startValue = myChart.getModel().option.dataZoom[0].startValue;
+        var endValue = myChart.getModel().option.dataZoom[0].endValue;
+        //获得起止位置百分比
+        var startPercent = myChart.getModel().option.dataZoom[0].start;
+        var endPercent = myChart.getModel().option.dataZoom[0].end;
+        console.log(startValue,endValue,startPercent,endPercent)
+        //用这个伸缩条关联其它的echart展示；比如关联myChart2
+        var option2 = myChart2.getModel().getOption();
+        option2.dataZoom[0].start=params.start;
+        option2.dataZoom[0].end=params.end;
+        myChart2.setOption(option2);  //后面的3个参数；1:false:表示合并默认false;2:false表示立即更新默认false;3:false:表示抛出事件默认false
+
+    })
     return myChart; 
 }
 //降水量，平均温度
