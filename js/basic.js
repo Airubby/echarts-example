@@ -21,10 +21,10 @@ function emSize() {
 }
 emSize()
 var pLegend=pieLegend("pieLegend");
-var mLegend=moreLegend("Legend");
-var cLegend=clickLegend("cLegend");
-var morepie=morepieChar("morepie");
-var twopie=twopieChar("twopie");
+var mLegend=moreLegend("moreLegend");
+var cLegend=clickLegend("clickLegend");
+var morepie=morepieChar("morepieChar");
+var twopie=twopieChar("twopieChar");
 var polar = polarChar("polarChar");
 var pie = pieChar("pieChar");
 var area = areaChar("areaChar");
@@ -39,7 +39,8 @@ var pic_img2 = drawWater("pic_img2", {
     color: ["#02dde0", "#6ff9f9"]
 });
 
-var radar=radarChar("radar");
+var hbarcharmore=hbarCharmore("hbarCharmore");
+var radar=radarChar("radarChar");
 var piemore = piemoreChar("piemoreChar");
 var hChar=hbarChar("hbarChar");
 var charWD=barCharWD("barCharWD");
@@ -56,6 +57,7 @@ $(window).resize(function () {
     pLegend.resize();
     mLegend.resize();
     cLegend.resize();
+    hbarcharmore.resize();
     radar.resize();
     morepie.resize();
     twopie.resize();

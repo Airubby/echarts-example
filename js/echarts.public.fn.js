@@ -154,6 +154,186 @@ function pieLegend(ID){
     myChart.setOption(option, true);
     return myChart; 
 }
+
+//横向柱状 设备告警top
+function hbarCharmore(ID){
+    var yData=['一月','二月','三月','4月','五月','六月','七月'];
+    var color=["#3ff504","#fff","#fbf320","#e92f0d"];
+    var myChart = echarts.init(document.getElementById(ID));
+
+    var option = {
+        
+        color:color,
+        title:{
+            text:"同比分析",  
+            x:'center',
+            top: 15,
+            textStyle:{
+                color:"#fff",
+            },
+        },
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            } 
+        },
+        legend: {
+            bottom:'10px',
+            itemWidth:6,
+            itemHeight:6,
+            borderRadius: 20,
+            textStyle:{
+                rich:{
+                    a:{
+                        color:color[0]
+                    },
+                    b:{
+                        color:color[1]
+                    },
+                    c:{
+                        color:color[2]
+                    },
+                    d:{
+                        color:color[3]
+                    }
+                }
+            },
+            data: ['UPS-尖', 'UPS-峰','UPS-平','UPS-谷'],
+            formatter: function(name) {
+                var index = 0;
+                var clientlabels = ['尖','峰','平','谷'];
+                var data=['UPS-尖', 'UPS-峰','UPS-平','UPS-谷'];
+                data.forEach(function(value,i){
+                    if(value == name){
+                        index = i;
+                    }
+                });
+                if(index==0){
+                    return '{a|'+clientlabels[index]+'}';
+                }else if(index==1){
+                    return '{b|'+clientlabels[index]+'}';
+                }else if(index==2){
+                    return '{c|'+clientlabels[index]+'}';
+                }else if(index==3){
+                    return '{d|'+clientlabels[index]+'}';
+                }
+            },
+        },
+        grid: {
+            top:"40px",
+            bottom: '40px',
+            containLabel: true
+        },
+        xAxis:  {
+            
+            type: 'category',
+            axisLine:{
+                lineStyle:{
+                    color:"#304a5d",
+                    width:3,
+                }
+            },
+            splitLine:{
+                show:false,
+            },
+            axisTick:{
+                show:false
+            },
+            axisLabel:{
+                color:"#fff"
+            },
+            data: yData,
+        },
+        yAxis: {
+            type: 'value',
+            axisLine:{
+                lineStyle:{
+                    color:"#304a5d",
+                    width:3,
+                }
+            },
+            axisTick:{
+                show:false
+            },
+            splitLine:{
+                show:true,
+                lineStyle:{
+                    color:"#213342",
+                    width:1,
+                    type:"dashed",
+                }
+            },
+            axisLabel:{
+                color:"#fff"
+            },
+            
+        },
+        series: [
+            {
+                name: 'UPS-尖',
+                type: 'bar',
+                stack: 'all',
+                barWidth: '20%',
+                data: [400, 302, 301, 334, 390, 330, 400]
+            },
+            {
+                name: 'UPS-峰',
+                type: 'bar',
+                stack: 'all',
+                barWidth: '20%',
+                data: [120, 132, 101, 134, 90, 230, 400]
+            },
+            {
+                name: 'UPS-平',
+                type: 'bar',
+                stack: 'all',
+                barWidth: '20%',
+                data: [220, 182, 191, 234, 390, 330, 400]
+            },
+            {
+                name: 'UPS-谷',
+                type: 'bar',
+				stack: 'all',
+                barWidth: '20%',
+                data: [150, 212, 201, 154, 290, 430, 420]
+            },
+			
+			{
+                name: '烟感-尖',
+                type: 'bar',
+                stack: 'public',
+                barWidth: '20%',
+                data: [380, 302, 301, 364, 390, 330, 400]
+            },
+            {
+                name: '烟感-峰',
+                type: 'bar',
+                stack: 'public',
+                barWidth: '20%',
+                data: [140, 132, 121, 134, 90, 230, 400]
+            },
+            {
+                name: '烟感-平',
+                type: 'bar',
+                stack: 'public',
+                barWidth: '20%',
+                data: [220, 122, 191, 234, 390, 330, 400]
+            },
+            {
+                name: '烟感-谷',
+                type: 'bar',
+				stack: 'public',
+                barWidth: '20%',
+                data: [180, 212, 201, 124, 190, 330, 400]
+            },
+			
+        ]
+    };
+    myChart.setOption(option, true);
+    return myChart; 
+}
+
 //雷达扫描
 function radarChar(ID){
     var myChart = echarts.init(document.getElementById(ID));
@@ -1502,8 +1682,8 @@ function annulus(ID){
             x: 'right',
             y:'bottom',
             align:'left',
-            itemWidth:5,
-            itemHeight:5,
+            itemGap:30,  //间距
+            borderRadius: 20,
             selectedMode:false, //点击不改变状态
             x: '80%', //left,right
             y:'center',
@@ -2690,7 +2870,7 @@ function hbarChar(ID){
                 name: '告警提示',
                 type: 'bar',
                 stack: 'all',
-                barWidth: '50%',
+                barWidth: '20%',
                 data: [400, 302, 301, 334, 390, 330, 400]
             },
             {
@@ -2710,9 +2890,11 @@ function hbarChar(ID){
             {
                 name: '紧急告警',
                 type: 'bar',
+				stack: 'public',
                 barWidth: '20%',
                 data: [150, 212, 201, 154, 190, 330, 400]
             }
+			
         ]
     };
     myChart.setOption(option, true);
