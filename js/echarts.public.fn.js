@@ -90,7 +90,7 @@ function pieLegend(ID){
             data: ['机架设备', '场地设施','备品备件']
         },
         series: [
-		{
+		    {
                 type:'pie',
                 radius: ['68%', '80%'],
                 silent:true,  //不触发鼠标事件，及鼠标放上去无效果
@@ -125,8 +125,12 @@ function pieLegend(ID){
             {
                 type:'pie',
                 radius: ['40%', '65%'],
+                hoverOffset:2,  //放上去向外偏移（扩大）展示多少
+                selectedMode:"single",  //  single 单选，  multiple 多选  false 布尔型,不支持选中
+                selectedOffset: 10,  //选中偏移
                 label: {
                     normal: {
+                        show:true,
                         formatter: ' {b|{c} }\r\n{per|{d}%} ',
                         rich: {
                             b: {
@@ -1094,6 +1098,14 @@ function twopieChar(ID){
                             }
                         }
                     }
+                },
+                labelLine:{
+                    length:10, //第一段的线长度
+                    length2: 50, //第二段的线长度
+                    smooth: false, //是否平滑线
+                },
+                lineStyle:{
+                    
                 },
                 data:[
                     {value:335, name:'配电'},
