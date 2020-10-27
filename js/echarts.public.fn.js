@@ -1722,7 +1722,7 @@ function annulus(ID){
             {
                 name:'访问来源',
                 type:'pie',
-                radius: ['5%', '70%'],
+                radius: ['30%', '70%'],
                 //如果不需要开启该策略，例如圆环图这个例子中需要强制所有标签放在中心位置，可以将avoidLabelOverlap该值设为 false。
                 avoidLabelOverlap: false,
                 roseType: 'area',  //块状区域
@@ -3188,6 +3188,7 @@ function lineZoom(ID){
             {
                 type: 'slider',
                 show:true,
+                showDetail:true, //拖动时显示实时数据； 默认为true  
                 backgroundColor:"#041742",
                 dataBackground:{
                     lineStyle:{
@@ -3370,6 +3371,99 @@ function twoValue(ID){
                 data:[2.0, 4, 7, 11,12, 14, 13, 17, 20, 23, 24, 25]
             }
         ]
+    };
+    myChart.setOption(option, true);
+    
+    return myChart; 
+}
+//告警圆环
+function alarmType(ID){
+    var data=[
+        {value:335, name:'提示',rate:"25%"},
+        {value:310, name:'一般',rate:"30%"},
+        {value:234, name:'重要',rate:"10%"},
+        {value:135, name:'严重',rate:"15%"},
+        {value:548, name:'紧急',rate:"20%"}
+    ];
+    var myChart = echarts.init(document.getElementById(ID));
+    var option = {
+        color:["#3BA0FF","#36CBCB","#4DCB73","#FAD337","#F2637B"],
+        title:{
+            text:"",  
+            top: 15,
+            x:'center',
+            textStyle:{
+                color:"#fff",
+            },
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{b}: {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'right',
+            y:'bottom',
+            align:'left',
+            itemGap:30,  //间距
+            borderRadius: 20,
+            selectedMode:false, //点击不改变状态
+            x: '80%', //left,right
+            y:'center',
+            itemWidth:6,
+            itemHeight:6,
+            show:true,
+            data:['提示','一般','重要','严重','紧急'],
+            formatter: function(params) {
+                for (var i = 0; i < option.series[0].data.length; i++) {
+                    if (option.series[0].data[i].name == params) {
+                        return params +"   "+ option.series[0].data[i].rate+"   "+ option.series[0].data[i].value+"次";
+                    }
+                }
+            },
+            textStyle:{
+                color:'#fff'
+            }
+        },
+        series: [
+            {
+                type:'pie',
+                radius: ['50%', '70%'],
+                center: ['50%', '40%'],
+                //如果不需要开启该策略，例如圆环图这个例子中需要强制所有标签放在中心位置，可以将avoidLabelOverlap该值设为 false。
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'center',
+                        formatter:'{text|数量}\r\n{num|1525252条}',
+                        rich: {
+                            num: {
+                                fontSize: 20,
+                                color:'#f00'
+                            },
+                            text: {
+                                color: '#fff',
+                                fontSize: 12,
+                                padding: [10, 0],
+                                borderRadius: 2
+                            }
+                        },
+                        
+                    },
+                },
+                itemStyle:{
+                    borderColor:"#0D2941",  
+                    borderWidth: 2,
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:data
+            }
+        ],
     };
     myChart.setOption(option, true);
     

@@ -51,7 +51,8 @@ var gaugeChar1=gaugeChar1("gaugeChar1")
 var gaugeChar2=gaugeChar2("gaugeChar2")
 var polarChar1=polarChar1("polarChar1")
 var annulus=annulus("annulus")
-console.log(piemore)
+var alarm=alarmType("alarmType")
+
 $(window).resize(function () {
     emSize()
     pLegend.resize();
@@ -78,6 +79,7 @@ $(window).resize(function () {
     gaugeChar2.resize();
     polarChar1.resize();
     annulus.resize();
+    alarm.resize();
 });
 
 
