@@ -74,10 +74,206 @@ wsConnection("1236","",function(result){
         $(".mapChar_list").show();
     }
 });
+function moreLine(ID){
+    var list=[
+        {name:"UPS",list:[
+            {name:"尖",list:[{time:"",value:""},{time:"",value:""},{time:"",value:""}]},
+            {name:"峰",list:[{time:"",value:""},{time:"",value:""},{time:"",value:""}]},
+            {name:"平",list:[{time:"",value:""},{time:"",value:""},{time:"",value:""}]},
+            {name:"谷",list:[{time:"",value:""},{time:"",value:""},{time:"",value:""}]},
+        ]},
+        {name:"烟感",list:[
+            {name:"尖",list:[{time:"",value:""},{time:"",value:""},{time:"",value:""}]},
+            {name:"峰",list:[{time:"",value:""},{time:"",value:""},{time:"",value:""}]},
+            {name:"平",list:[{time:"",value:""},{time:"",value:""},{time:"",value:""}]},
+            {name:"谷",list:[{time:"",value:""},{time:"",value:""},{time:"",value:""}]},
+        ]}
+    ]
+    var legend=['尖','峰','平','谷'];
+    var legendData=['UPS-尖', 'UPS-峰','UPS-平','UPS-谷']
+    var color=["#3ff504","#fff","#fbf320","#e92f0d","#3ff504","#fff","#fbf320","#e92f0d","#3ff504","#fff"];
+    var xData=["09:00", "09:03", "09:13", "09:14", "09:24","09:34","09:44"];
+    var yData=[];
+    var legendRich={},tcolor=[];   
+    for(let i=0;i<legend.length;i++){
+        legendRich["A"+i]={color:color[i%10]}
+        tcolor.push(color[i%10]);
+    }
+    // var legendRich={
+    //     A0:{
+    //         color:color[0]
+    //     },
+    //     A1:{
+    //         color:color[1]
+    //     },
+    //     A2:{
+    //         color:color[2]
+    //     },
+    //     A3:{
+    //         color:color[3]
+    //     }
+    // }
+    var myChart = echarts.init(document.getElementById(ID));
+
+    var option = {
+        
+        color:tcolor,
+        title:{
+            text:"同比分析",  
+            x:'center',
+            top: 15,
+            textStyle:{
+                color:"#fff",
+            },
+        },
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow',        // 默认为直线，可选为：'line' | 'shadow' | ""  空表示什么都没有
+                shadowStyle:{
+                    shadowColor: 'rgba(51, 185, 255, 0.2)',
+                    shadowBlur: 10
+                }
+            } 
+        },
+        legend: {
+            bottom:'10px',
+            itemWidth:6,
+            itemHeight:6,
+            borderRadius: 20,
+            textStyle:{
+                rich:legendRich
+            },
+            data: legendData,
+            formatter: function(name) {
+                var index = 0;
+                var clientlabels = legend;
+                var data=legendData;
+                data.forEach(function(value,i){
+                    if(value == name){
+                        index = i;
+                    }
+                });
+                return '{A'+index+'|'+clientlabels[index]+'}';
+            },
+        },
+        grid: {
+            top:"40px",
+            bottom: '40px',
+            containLabel: true
+        },
+        xAxis:  {
+            
+            type: 'category',
+            axisLine:{
+                lineStyle:{
+                    color:"#304a5d",
+                    width:3,
+                }
+            },
+            splitLine:{
+                show:false,
+            },
+            axisTick:{
+                show:false
+            },
+            axisLabel:{
+                color:"#fff"
+            },
+            data: xData,
+        },
+        yAxis: {
+            type: 'value',
+            axisLine:{
+                lineStyle:{
+                    color:"#304a5d",
+                    width:3,
+                }
+            },
+            axisTick:{
+                show:false
+            },
+            splitLine:{
+                show:true,
+                lineStyle:{
+                    color:"#213342",
+                    width:1,
+                    type:"dashed",
+                }
+            },
+            axisLabel:{
+                color:"#fff"
+            },
+            
+        },
+        series: [
+            {
+                name: 'UPS-尖',
+                type: 'line',
+                stack: 'all',
+                barWidth: '20%',
+                data: [400, 302, 301, 334, 390, 330, 400]
+            },
+            {
+                name: 'UPS-峰',
+                type: 'line',
+                stack: 'all',
+                barWidth: '20%',
+                data: [120, 132, 101, 134, 90, 230, 400]
+            },
+            {
+                name: 'UPS-平',
+                type: 'line',
+                stack: 'all',
+                barWidth: '20%',
+                data: [220, 182, 191, 234, 390, 330, 400]
+            },
+            {
+                name: 'UPS-谷',
+                type: 'line',
+				stack: 'all',
+                barWidth: '20%',
+                data: [150, 212, 201, 154, 290, 430, 420]
+            },
+			
+			{
+                name: '烟感-尖',
+                type: 'line',
+                stack: 'public',
+                barWidth: '20%',
+                data: [380, 302, 301, 364, 390, 330, 400]
+            },
+            {
+                name: '烟感-峰',
+                type: 'line',
+                stack: 'public',
+                barWidth: '20%',
+                data: [140, 132, 121, 134, 90, 230, 400]
+            },
+            {
+                name: '烟感-平',
+                type: 'line',
+                stack: 'public',
+                barWidth: '20%',
+                data: [220, 122, 191, 234, 390, 330, 400]
+            },
+            {
+                name: '烟感-谷',
+                type: 'line',
+				stack: 'public',
+                barWidth: '20%',
+                data: [180, 212, 201, 124, 190, 330, 400]
+            },
+			
+        ]
+    };
+    myChart.setOption(option, true);
+    return myChart; 
+}
 function pieLegend(ID){
     var myChart = echarts.init(document.getElementById(ID));
     var option = {
-        color:["#72A6FD","#00AB6F","#FFC002"],
+        color:["#72A6FD","#00AB6F","#FFC002","#EF5959"],
         tooltip: {
             trigger: 'item',
             formatter: "{b}: {c} ({d}%)"
@@ -87,7 +283,7 @@ function pieLegend(ID){
             textStyle:{
                 color:"#fff",
             },
-            data: ['机架设备', '场地设施','备品备件']
+            data: ['机架设备', '场地设施','备品备件','高级材料']
         },
         series: [
 		    {
@@ -131,11 +327,12 @@ function pieLegend(ID){
                 label: {
                     normal: {
                         show:true,
-                        formatter: ' {b|{c} }\r\n{per|{d}%} ',
+                        formatter: ' {b|{b}({c}) }\r\n{per|{d}%} ',
+                        fontSize: 30, //fontSize需要放在这个地方设置（rich外面）不然里面设置的字体太大，会出现重叠
                         rich: {
                             b: {
-                                fontSize: 30,
-                                lineHeight: 33
+                                fontSize: 20,
+                                lineHeight: 20
                             },
                             per: {
                                 color: '#fff',
@@ -148,8 +345,9 @@ function pieLegend(ID){
                 },
                 data:[
                     {value:856, name:'机架设备'},
-                    {value:577, name:'场地设施'},
-                    {value:577, name:'备品备件'}
+                    {value:15, name:'场地设施'},
+                    {value:17, name:'备品备件'},
+                    {value:577, name:'高级材料'}
                 ]
 			},
 			
@@ -179,7 +377,11 @@ function hbarCharmore(ID){
         tooltip : {
             trigger: 'axis',
             axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                type : 'shadow',        // 默认为直线，可选为：'line' | 'shadow' | ""  空表示什么都没有
+                shadowStyle:{
+                    shadowColor: 'rgba(51, 185, 255, 0.2)',
+                    shadowBlur: 10
+                }
             } 
         },
         legend: {
@@ -719,7 +921,7 @@ function moreLegend(ID){
         tooltip : {
             trigger: 'axis',
             axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow' | ""  空表示什么都没有
             } 
         },
         legend: {
@@ -874,21 +1076,41 @@ function clickLegend(ID){
     var color=["#FFB34C","#5DC49E","#378EE9"];
     var series=[
             {
+                name:'',
+                type:'line',
+                smooth:"true", //平滑
+                symbolSize:'40px',
+                markLine: {
+                    silent: true,  //不触发鼠标事件
+                    symbol:'none',
+                    label:{
+                        position: 'middle',
+                        show:false, //不显示数字
+                    },
+                    data: [{
+                        yAxis:400,
+                        lineStyle:{
+                            color:'#f00'
+                        }
+                    }]
+                }
+            },
+            {
                 name: "温度",
                 type: 'bar',
-                barWidth: '20%',
+                barWidth: '99%',
                 data: [120, 132, 101, 134, 90, 230, 400]
             },
             {
                 name: "电压",
                 type: 'bar',
-                barWidth: '20%',
+                barWidth: '99%',
                 data: [220, 182, 191, 234, 290, 330, 400]
             },
             {
                 name: "内阻",
                 type: 'bar',
-                barWidth: '20%',
+                barWidth: '99%',
                 data: [220, 182, 191, 234, 290, 330, 400]
             }
         ];
@@ -923,7 +1145,7 @@ function clickLegend(ID){
         tooltip : {
             trigger: 'axis',
             axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow' | ""  空表示什么都没有
             } 
         },
         grid: {
@@ -964,7 +1186,11 @@ function clickLegend(ID){
                 }
             },
             splitLine:{
-                show:false,
+                show:true,
+                lineStyle:{
+                    color:["#09c"],
+                    type:'dashed'
+                }
             },
             axisTick:{
                 show:false
@@ -979,9 +1205,11 @@ function clickLegend(ID){
         yAxis: {
             type: 'value',
             axisLine:{
+                show:true,
                 lineStyle:{
-                    color:"#304a5d",
-                    width:3,
+                    color:"#09c",
+                    width:1,
+                    type:"dashed"
                 }
             },
             axisTick:{
@@ -1976,13 +2204,14 @@ function pieChar(ID) {
                         formatter:'{num|73%}\r\n{text|使用率}',
                         rich: {
                             num: {
-                                fontSize: 50,
-                                color:'#f00'
+                                fontSize: 30,
+                                color:'#f00',
+                                padding: [5, 0],
                             },
                             text: {
                                 color: '#fff',
                                 fontSize: 16,
-                                padding: [10, 0],
+                                padding: [5, 0],
                                 borderRadius: 2
                             }
                         },
@@ -2039,7 +2268,7 @@ function areaChar(ID){
     var xData=["2018-10-11 09:00:11", "2018-10-11 09:03", "2018-10-11 09:13", "2018-10-11 09:14",
      "2018-10-11 09:24","2018-10-11 09:34","2018-10-11 09:44","2018-10-11 09:54","2018-10-11 10:04","2018-10-11 10:14","2018-10-11 10:24"];
     var yData=[
-         {
+        {
             name:'实时IT设备电能',
             type:'line',
             smooth:"true", //平滑
@@ -2414,6 +2643,7 @@ function mapChar(ID){
 //仪表盘
 function gaugeChar(ID){
     var myChart = echarts.init(document.getElementById(ID));
+    var color=[[0.5, '#f00'],[1, '#00ffff']];
     var option = {
         
         tooltip : {
@@ -2424,12 +2654,12 @@ function gaugeChar(ID){
                 name: 'PUE',
                 type: 'gauge',
                 radius:'98%',
-                min:1,
-                max:3,
+                min:0,
+                max:5,
                 splitNumber:0,
                 axisLine:{
                     lineStyle:{
-                        color:[[0.9, '#f00'],[1, '#00ffff']],
+                        color:color,
                         width:'10',
                     }
                 },
@@ -2471,7 +2701,10 @@ function gaugeChar(ID){
     };
     myChart.setOption(option, true);
     setInterval(function () {
-        option.series[0].data[0].value = (Math.random() * 3).toFixed(2) - 0;
+        let value=(Math.random() * 5).toFixed(2)
+        option.series[0].data[0].value = value;
+        var color=[[Number(value)/5, '#f00'],[1, '#00ffff']];
+        option.series[0].axisLine.lineStyle.color=color;
         myChart.setOption(option, true);
     },4000);
     return myChart; 
@@ -2807,7 +3040,7 @@ function hbarChar(ID){
         tooltip : {
             trigger: 'axis',
             axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow' | ""  空表示什么都没有
             } 
         },
         legend: {
@@ -2938,7 +3171,7 @@ function barCharWD(ID){
         tooltip : {
             trigger: 'axis',
             axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                type : 'line'        // 默认为直线，可选为：'line' | 'shadow'
+                type : 'line'        // 默认为直线，可选为：'line' | 'shadow' | ""  空表示什么都没有
             },
             formatter:'{b}：{c}'
         },
@@ -3056,7 +3289,7 @@ function barCharSD(ID){
         tooltip : {
             trigger: 'axis',
             axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow' | ""  空表示什么都没有
             },
             formatter:'{b}：{c1}'
         },
@@ -3087,7 +3320,7 @@ function barCharSD(ID){
                     }
                 },
                 axisLabel:{
-                    interval:0,
+                    interval:0, //强制显示所有标签
                     rotate:-50,
                     color: "#fff"
                 },
@@ -3326,7 +3559,7 @@ function twoValue(ID){
         yAxis: [
             {
                 type: 'value',
-                name: '降水量',
+                name: '降水',
                 min: 0,
                 max: 30,
                 interval: 5,
@@ -3337,7 +3570,7 @@ function twoValue(ID){
             },
             {
                 type: 'value',
-                name: '平均温度',
+                name: '温度',
                 min: 0,
                 max: 150,
                 interval: 50,
@@ -3369,6 +3602,12 @@ function twoValue(ID){
                 type:'line',
                 yAxisIndex: 1,  //如果设置shadow  去掉这个就可以了
                 data:[2.0, 4, 7, 11,12, 14, 13, 17, 20, 23, 24, 25]
+            },
+            {
+                name:'平均湿度',
+                type:'line',
+                yAxisIndex: 1,  //如果设置shadow  去掉这个就可以了
+                data:[4.0, 4, 7, 1,12, 4, 13, 17, 2, 3, 24, 25]
             }
         ]
     };

@@ -52,6 +52,9 @@ var gaugeChar2=gaugeChar2("gaugeChar2")
 var polarChar1=polarChar1("polarChar1")
 var annulus=annulus("annulus")
 var alarm=alarmType("alarmType")
+var moreline=moreLine("moreLine")
+
+//vue中display下 this.$nextTick(()=>{myChart.resize()})
 
 $(window).resize(function () {
     emSize()
@@ -80,6 +83,7 @@ $(window).resize(function () {
     polarChar1.resize();
     annulus.resize();
     alarm.resize();
+    moreline.resize();
 });
 
 
